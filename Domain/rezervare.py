@@ -86,7 +86,7 @@ def toString(rezervare):
     Args:
         rezervare (dictionar): dictionarul unei rezervari
     """
-    return "id: {}, nume: {}, clasa: {}, pret: {}, checked: {}".format(
+    return "id: {} , nume: {}, clasa: {}, pret: {}, checked: {}".format(
         getId(rezervare),
         getNume(rezervare),
         getClasa(rezervare),

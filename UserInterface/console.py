@@ -23,6 +23,7 @@ def submenuChecked():
         return "Nu"
     else:
         print("Aceasta actiune nu exista, incercati din nou")
+        input("Apasati ENTER pentru a continua: ")
     submenuChecked()
 
 
@@ -50,6 +51,7 @@ def submenuClasa():
         return "Business"
     else:
         print("Aceasta optiune nu exista, incercati din nou!")
+        input("Apasati ENTER pentru a continua: ")
     submenuClasa()
 
 
@@ -77,6 +79,7 @@ def submenuCRUD(lista):
         print(" ")
         print("   Rezervare adaugata cu succes!   ")
         print(" ")
+        input("Apasati ENTER pentru a continua: ")
         return adauga_rezervare(id, nume, clasa, pret, checked, lista)
 
 
@@ -85,6 +88,7 @@ def submenuCRUD(lista):
         print(" ")
         print("   Rezervare stearsa cu succes!   ")
         print(" ")
+        input("Apasati ENTER pentru a continua: ")
         return sterge_rezervare(id, lista)
 
     
@@ -97,6 +101,7 @@ def submenuCRUD(lista):
         print(" ")
         print("   Rezervare modificata cu succes!   ")
         print(" ")
+        input("Apasati ENTER pentru a continua: ")
         return modificaRezervare(id, nume, clasa, pret, checked, lista)
         
         
@@ -127,11 +132,14 @@ def runMenu(lista):
     while True:
         printMenu()
         optiune = input("Alegeti optiunea pe care o doriti: ")
-        if optiune == 1:
+
+
+        if optiune == "1":
             lista = submenuCRUD(lista)
 
+
         
-        if optiune == "8":
+        elif optiune == "8":
             if len(lista) == 0:
                 print(" !!! Nu exista rezervari disponibile. !!!")
             else:
@@ -140,14 +148,25 @@ def runMenu(lista):
                 print(" ")
                 for rezervare in lista:
                     print(toString(rezervare))
+                print("     ")
+                input("Apasati ENTER pentru a continua: ")
 
-        if optiune == "x":
+
+
+
+
+        elif optiune == "x":
             break
 
-        if optiune == "99":
+
+
+
+        elif optiune == "99":
             lista = rezervare_random(lista)
+            input("Apasati ENTER pentru a continua: ")
 
 
+            
         else:
             print(" ")
             print("Aceasta optiune este momentan indisponibila, incercati una diferita!")
