@@ -29,6 +29,8 @@ def sterge_rezervare(id, lista):
         Lista curenta fara rezervare a carei id ii dat
 
     """
+
+    
     return [rezervare for rezervare in lista if getId(rezervare) != id]
 
 
