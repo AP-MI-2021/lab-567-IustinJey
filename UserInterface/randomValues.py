@@ -14,4 +14,4 @@ def rezervare_random(lista):
     print("  Rezervare generata cu succes!  ")
     print(" ")
 
-    return adauga_rezervare(id, lista_nume[randrange(0,6)], lista_clase[randrange(0,2)], pret, lista_checked[randrange(0,1)], lista)
+    return adauga_rezervare(id, lista_nume[randrange(0,7)], lista_clase[randrange(0,3)], pret, lista_checked[randrange(0,2)], lista)
