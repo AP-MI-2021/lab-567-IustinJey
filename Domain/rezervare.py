@@ -14,13 +14,13 @@ def creaza_rezervare(id, nume, clasa, pret, checked):
         Return: Un dictionar a unei rezervari
 
     """
-    return {
-        "id" : id,
-        "nume" : nume,
-        "clasa" : clasa,
-        "pret" : pret,
-        "checked" : checked
-    }
+    return [
+        int(id),
+        str(nume),
+        str(clasa),
+        float(pret),
+        str(checked)
+    ]
 
 
 
@@ -31,7 +31,7 @@ def getId(rezervare):
     Args:
         rezervare (dictionar): dictionarul unei rezervari
     """
-    return rezervare["id"]
+    return rezervare[0]
 
 
 
@@ -43,7 +43,7 @@ def getNume(rezervare):
     Args:
         rezervare(dictionar): dictionarul unei rezervari
     """
-    return rezervare["nume"]
+    return rezervare[1]
 
 
 
@@ -54,7 +54,7 @@ def getClasa(rezervare):
     Args:
         rezervare (dictionar): dictionarul unei rezervari
     """
-    return rezervare["clasa"]
+    return rezervare[2]
 
 
 
@@ -65,7 +65,7 @@ def getPret(rezervare):
     Args:
         rezeevare (dictionar): dictionarul unei rezervari
     """
-    return rezervare["pret"]
+    return rezervare[3]
 
 
 
@@ -76,7 +76,7 @@ def getChecked(rezervare):
     Args:
         rezervare (dictionar): dictionarul unei rezervari`
     """
-    return rezervare["checked"]
+    return rezervare[4]
 
 
 
