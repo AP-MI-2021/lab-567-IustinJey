@@ -1,4 +1,3 @@
-
 from Domain.rezervare import creaza_rezervare, getId, getChecked, getPret, getClasa, getNume
 
 

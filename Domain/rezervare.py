@@ -1,6 +1,4 @@
 
-
-
 def creaza_rezervare(id, nume, clasa, pret, checked):
     """creaza_rezervare creaza o rezervare
 

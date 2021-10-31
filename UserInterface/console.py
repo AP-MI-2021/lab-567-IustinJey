@@ -1,6 +1,7 @@
 
-from Domain.rezervare import toString
+from Domain.rezervare import getNume, toString
 from Logic.CRUD import adauga_rezervare, modificaRezervare, sterge_rezervare
+from Logic.functionalitati import ieftinireRezervare, modificaClasa
 from UserInterface.randomValues import rezervare_random
 
 def submenuChecked():
@@ -104,12 +105,41 @@ def submenuCRUD(lista):
         input("Apasati ENTER pentru a continua: ")
         return modificaRezervare(id, nume, clasa, pret, checked, lista)
         
-        
-        
+             
+def TrecereaLaClasaSuperioara(lista):
+    try:
+        nume = input("Introduceti numele pe a caror rezervari doriti sa treceti la o clasa superioara: ")
+    except ValueError as ve:
+        print("Error: {}".format(ve))
+    for x in lista:
+        if nume in getNume(x):
+            clasa_noua = submenuClasa()
+            listaNoua = []
+            listaNoua = modificaClasa(lista, nume, clasa_noua)
+            print(" ")
+            print("    Modificare realizata cu succes")
+            input(print(" Apasati ENTER pentru a continua: "))
+            print(" ")
+            return listaNoua
+    print(" ")
+    print("   Numele introdus nu exista in baza noastra de date, incercati din nou.")
+    print(" ")
+    input("Apasati ENTER pentru a continua: ")
+    print(" ")
+    return lista
 
 
-
-
+def uiIeftinirePret(lista):
+    try:
+        procent = int(input("Introduceti procentul cu care doriti sa ieftiniti rezervarile cu checkin: " ))
+    except ValueError as ve:
+        print("Error: {}".format(ve))
+    listaNoua = ieftinireRezervare(lista, procent)
+    print(" ")
+    print("Toate rezervarile cu checkin au fost ieftinite cu "+str(procent)+"%")
+    print(" ")
+    input("Apasati ENTER pentru a continua: ")
+    return listaNoua
 
 def printMenu():
     """printMenu afiseaza meniul principal
@@ -117,8 +147,8 @@ def printMenu():
 
     print(" ")
     print("    (1) Adăugare / ștergere / modificare rezervare")
-    print("    (2) [INDISPONIBIL] Trecerea tuturor rezervărilor făcute pe un nume citit la o clasă superioară.")
-    print("    (3) [INDISPONIBIL] Ieftineste toate rezervările la care s-a făcut checkin cu un procentaj citit.")
+    print("    (2) Trecerea tuturor rezervărilor făcute pe un nume citit la o clasă superioară.")
+    print("    (3) Ieftineste toate rezervările la care s-a făcut checkin cu un procentaj citit.")
     print("    (4) [INDISPONIBIL] Determina prețului maxim pentru fiecare clasă.")
     print("    (5) [INDISPONIBIL] Ordonarea rezervărilor descrescător după preț.")
     print("    (6) [INDISPONIBIL] Afișarea sumelor prețurilor pentru fiecare nume.")
@@ -135,10 +165,11 @@ def runMenu(lista):
 
 
         if optiune == "1":
-            lista = submenuCRUD(lista)
-
-
-        
+            lista = submenuCRUD(lista) 
+        if optiune == "2":
+            lista = TrecereaLaClasaSuperioara(lista)
+        if optiune == "3":
+            lista = uiIeftinirePret(lista)
         elif optiune == "8":
             if len(lista) == 0:
                 print(" !!! Nu exista rezervari disponibile. !!!")
@@ -150,23 +181,11 @@ def runMenu(lista):
                     print(toString(rezervare))
                 print("     ")
                 input("Apasati ENTER pentru a continua: ")
-
-
-
-
-
         elif optiune == "x":
             break
-
-
-
-
         elif optiune == "99":
             lista = rezervare_random(lista)
-            input("Apasati ENTER pentru a continua: ")
-
-
-            
+            input("Apasati ENTER pentru a continua: ")    
         else:
             print(" ")
             print("Aceasta optiune este momentan indisponibila, incercati una diferita!")
