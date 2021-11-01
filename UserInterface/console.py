@@ -72,11 +72,15 @@ def submenuCRUD(lista):
     optiune = int(input("Alegeti optiunea pe care o doriti [1-3]: "))
     
     if optiune == 1:
-        id = int(input("Introduceti id-ul: "))
-        nume = input("Introduceti NUME_PRENUME: ")
-        clasa = submenuClasa()
-        pret = float(input("Introduceti pretul: "))
-        checked = submenuChecked()
+        try:
+            id = int(input("Introduceti id-ul: "))
+            nume = input("Introduceti NUME_PRENUME: ")
+            clasa = submenuClasa()
+            pret = float(input("Introduceti pretul: "))
+            checked = submenuChecked()
+        except ValueError as ve:
+            print("Error: {}".format(ve))
+
         print(" ")
         print("   Rezervare adaugata cu succes!   ")
         print(" ")
@@ -85,20 +89,27 @@ def submenuCRUD(lista):
 
 
     if optiune == 2:
-        id = int(input("Introdu id-ul rezervarii ce doresti a fi stearsa: "))
+        try:
+            id = int(input("Introdu id-ul rezervarii ce doresti a fi stearsa: "))
+        except ValueError as ve:
+            print("Error: {}".format(ve))
         print(" ")
         print("   Rezervare stearsa cu succes!   ")
         print(" ")
         input("Apasati ENTER pentru a continua: ")
         return sterge_rezervare(id, lista)
-
+        
     
     if optiune == 3:
-        id = int(input("Introdu id-ul rezervarii ce doresti a fi modificata: "))
-        nume = input("Noul nume [NUME_PRENUME]: ")
-        clasa = submenuClasa()
-        pret = float(input("Introduceti noul pret: "))
-        checked = submenuChecked()
+        try:
+            id = int(input("Introdu id-ul rezervarii ce doresti a fi modificata: "))
+            nume = input("Noul nume [NUME_PRENUME]: ")
+            clasa = submenuClasa()
+            pret = float(input("Introduceti noul pret: "))
+            checked = submenuChecked()
+        except ValueError as ve:
+            print("Error:".format(ve))
+            
         print(" ")
         print("   Rezervare modificata cu succes!   ")
         print(" ")
