@@ -2,24 +2,41 @@ from Domain.rezervare import toString
 from Logic.CRUD import adauga_rezervare, modificaRezervare, sterge_rezervare
 from UserInterface.randomValues import rezervare_random
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def ENTER_ADD():
+    print(" ")
+    input("Apasati " + bcolors.OKCYAN + "ENTER " + bcolors.ENDC + "pentru a continua: ")
+    print(" ")
+
 def help():
     """help afiseaza lista cu toate comenzile
     """
     print(" ")
-    print("  Scrieti comenzile despartite cu ;, iar parametrii despartiti cu ,")
-    print("    Add - adauga o rezervare in lista [ex. (Add,id,Nume,Clasa,Pret,Checkin)")
-    print("    Delete - sterge o rezervare din lista [ex. (Delete,id)")
-    print("    Update - modifica o rezervare fin lista [ex. (Update,id,Nume,Clasa,Pret,Checkin)")
-    print("    Show all - afiseaza toate rezervarile din lista [ex. (Show all)")
-    print("    Random - genereaza o rezervare aleatorie [ex. (Random)")
+    print("    LISTA DE COMENZI")
     print(" ")
-    input("Apasati ENTER pentru a continua: ")
+    print(f"{bcolors.OKGREEN +'        Add '+ bcolors.ENDC + '-> [id,Nume,Clasa,Pret,Checkin]':<70} {'-adauga o rezervare in lista'}")
+    print(f"{bcolors.OKGREEN +'        Delete '+ bcolors.ENDC + '-> [id]':<70} {'-sterge o rezervare dupa id'}")
+    print(f"{bcolors.OKGREEN +'        Update '+ bcolors.ENDC + '-> [id,Nume,Clasa,Pret,Checkin]':<70} {'-modifica o rezervare in lista'}")
+    print(f"{bcolors.OKGREEN +'        Show all'+ bcolors.ENDC:<70} {'-afiseaza toate rezervarile'}")
+    print(f"{bcolors.OKGREEN +'        Random '+ bcolors.ENDC:<70} {'-genereaza o rezervare aleatorie'}")
+    ENTER_ADD()
 
 def runCommandMenu(lista):
 
     while True:
         print(" ")
         print("    Inserati comanda Help, pentru a afisa lista cu toate comenzile")
+        print(bcolors.WARNING +"    ATENTIE" + bcolors.ENDC + ": Introduceti functiile despartite prin <;> iar parametrii prin <,>)")
         print(" ")
         commandLine = input("Introduceti comanda: ")
         commandPerFunctions = commandLine.split(";")
@@ -54,16 +71,13 @@ def runCommandMenu(lista):
                     print(" ")
                 for rezervare in lista:
                     print(toString(rezervare))
-                print("     ")
-                input("Apasati ENTER pentru a continua: ")
+                ENTER_ADD()
             elif commandPerParam[0] == "Random":
                 lista = rezervare_random(lista)
-                input("Apasati ENTER pentru a continua: ")
+                ENTER_ADD()
             elif commandPerParam[0] == "Help":
                 help()
             else:
                 print(" ")
-                print ("    Comanda introduse este invalida, incercati din nou.")
-                print(" ")
-                input("Apasati ENTER pentru a continua:")
-                print(" ")
+                print ("    Comanda introdusa este invalida, incercati din nou.")
+                ENTER_ADD()

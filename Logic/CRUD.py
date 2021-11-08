@@ -14,7 +14,9 @@ def adauga_rezervare(id, nume, clasa, pret, checked,lista):
     Return: 
         lista curenta plus noua rezevare
     """
+    
     rezervare_noua = creaza_rezervare(id, nume, clasa, pret, checked)
+    
     return lista + [rezervare_noua]
 
 

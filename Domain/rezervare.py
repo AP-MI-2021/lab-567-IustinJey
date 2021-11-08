@@ -1,3 +1,14 @@
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 def creaza_rezervare(id, nume, clasa, pret, checked):
     """creaza_rezervare creaza o rezervare
@@ -84,10 +95,5 @@ def toString(rezervare):
     Args:
         rezervare (dictionar): dictionarul unei rezervari
     """
-    return "id: {} , nume: {}, clasa: {}, pret: {}, checked: {}".format(
-        getId(rezervare),
-        getNume(rezervare),
-        getClasa(rezervare),
-        getPret(rezervare),
-        getChecked(rezervare)
-    )
+    return f"{bcolors.OKCYAN + 'id: '+ bcolors.ENDC + str(getId(rezervare)):<25} {bcolors.OKBLUE +'nume: ' + bcolors.ENDC + str(getNume(rezervare)):<45} {bcolors.OKBLUE + 'clasa: ' + bcolors.ENDC + str(getClasa(rezervare)):<40}"\
+           f"{bcolors.OKBLUE +'pret: '+ bcolors.ENDC + str(getPret(rezervare)):<30} {bcolors.OKBLUE + 'checked: ' + bcolors.ENDC + str(getChecked(rezervare))}"
