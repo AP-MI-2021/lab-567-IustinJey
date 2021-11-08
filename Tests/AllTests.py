@@ -17,4 +17,4 @@ def runAllTests():
     testPretMaximPerClasa()
     testSortareDescrescatoarePret()
     testSumaPretNume()
-   # TesteUndoRedo()#
+    TesteUndoRedo()
