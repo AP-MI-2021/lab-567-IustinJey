@@ -1,4 +1,5 @@
 import sys
+import os
 from time import sleep
 from random import randrange
 from Domain.rezervare import getChecked, getClasa, getId, getNume, getPret, toString
@@ -22,6 +23,7 @@ def ENTER_ADD():
     print(" ")
     input("Apasati " + bcolors.OKCYAN + "ENTER " + bcolors.ENDC + "pentru a continua: ")
     print(" ")
+    os.system('cls||clear')
 
 
 def submenuChecked():
@@ -290,21 +292,31 @@ def runMenu(lista):
 
 
         if optiune == "1":
+            os.system('cls||clear')
             lista = submenuCRUD(lista, undoOperations, redoOperations) 
         elif optiune == "2":
+            os.system('cls||clear')
             lista = TrecereaLaClasaSuperioara(lista)
         elif optiune == "3":
+            os.system('cls||clear')
             lista = uiIeftinirePret(lista)
         elif optiune == '4':
+            os.system('cls||clear')
             uiClasaPretMaxim(lista)
         elif optiune == '5':
+            os.system('cls||clear')
             lista = uiSortareDupaPret(lista)
         elif optiune == '6':
+            os.system('cls||clear')
             lista = uisumaPretNume(lista)
         elif optiune == 'u':
+            os.system('cls||clear')
             lista = uiUndo(lista,undoOperations, redoOperations)
+            print("UNDO realizat!")
         elif optiune == 'r':
+            os.system('cls||clear')
             lista = uiRedo(lista,undoOperations, redoOperations)
+            print("REDO realizat!")
         elif optiune == "a":
             if len(lista) == 0:
                 print(" ")

@@ -1,4 +1,4 @@
-from Domain.rezervare import getChecked, getClasa, getNume, getPret
+from Domain.rezervare import getChecked, getClasa, getNume, getPret, toString
 from Logic.CRUD import adauga_rezervare, getById, sterge_rezervare
 from UserInterface.console import submenuCRUD, uiRedo, uiUndo
 
@@ -12,37 +12,45 @@ def TesteUndoRedo():
     rezultat = adauga_rezervare(1,"Iustin", "Economy", 800, "Da", lista)
     undoOperations.append(
                 [lambda : sterge_rezervare(1,rezultat),
-                 lambda : adauga_rezervare(1, getNume(getById(1,lista1)), getClasa(getById(1,lista1)), getPret(getById(1,lista1)), getChecked(getById(1,lista1)), lista1)])
+                 lambda : adauga_rezervare(1,"Iustin", "Economy", 800, "Da", lista1)])
 
+    
     lista = rezultat
-    lista1 = lista
+    lista2 = lista
     rezultat = adauga_rezervare(2,"Iustin", "Economy", 800, "Da", lista)
     undoOperations.append(
                 [lambda : sterge_rezervare(2,rezultat),
-                 lambda : adauga_rezervare(2, getNume(getById(2,lista1)), getClasa(getById(2,lista1)), getPret(getById(2,lista1)), getChecked(getById(2,lista1)), lista1)])
+                 lambda : adauga_rezervare(2,"Iustin", "Economy", 800, "Da", lista2)])
 
     lista = rezultat
-    lista1 = lista
+    lista3 = lista
     rezultat = adauga_rezervare(3,"Iustin", "Economy", 800, "Da", lista)
     undoOperations.append(
                 [lambda : sterge_rezervare(3,rezultat),
-                 lambda : adauga_rezervare(3, getNume(getById(3,lista1)), getClasa(getById(3,lista1)), getPret(getById(3,lista1)), getChecked(getById(3,lista1)), lista1)])
+                 lambda : adauga_rezervare(3,"Iustin", "Economy", 800, "Da", lista3)])
 
     lista = rezultat
 
+ 
     assert len(lista) == 3
 
+    for x in lista:
+        print(toString(x))
+    print(" ")
 
     lista = uiUndo(lista, undoOperations, redoOperations)
+    for x in lista:
+        print(toString(x))
+    print(" ")
     assert len(lista) == 2
     assert getById(1, lista) is not None
     assert getById(2, lista) is not None
     assert getById(3, lista) is None
 
-    print(len(lista))
-
     lista = uiUndo(lista, undoOperations, redoOperations)
-    print(len(lista))
+    for x in lista:
+        print(toString(x))
+    print(" ")
     assert len(lista) == 1
     assert getById(1, lista) is not None
     assert getById(2, lista) is None
